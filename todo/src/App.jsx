@@ -21,6 +21,13 @@ function App() {
       ...todo,
       newTodo
     ])
+    setInput('');
+  }
+
+
+  function deleteHandler(id){
+    const p=todo.filter((x)=>x.id!==id);
+    setTodo(p);
   }
 
   return (
@@ -33,7 +40,8 @@ function App() {
         {
           todo.map((data,index)=>(
             <li key={index}>
-              {data.content}
+              <span>{data.content}</span>
+              <button onClick={()=>deleteHandler(data.id)}>delete</button>
             </li>
           ))
         }
