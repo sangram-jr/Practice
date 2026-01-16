@@ -30,6 +30,14 @@ function App() {
     setTodo(p);
   }
 
+  function doneHandler(id){
+    const p=todo.map((x)=>(
+      x.id===id ? {...x,isComplete:!x.isComplete} : x
+    ))
+    setTodo(p);
+    
+  }
+
   return (
     <div>
       <div>
@@ -39,8 +47,8 @@ function App() {
       <ul>
         {
           todo.map((data,index)=>(
-            <li key={index}>
-              <span>{data.content}</span>
+            <li key={index} className={data.isComplete?'classComplete':''}>
+              <span onClick={()=>doneHandler(data.id)}>{data.content}</span>
               <button onClick={()=>deleteHandler(data.id)}>delete</button>
             </li>
           ))
